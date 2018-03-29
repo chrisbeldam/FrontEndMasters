@@ -1,5 +1,25 @@
 const _ = {};
 
+
+_.map = function(list, callback){
+    //create empty array
+    var storage = [];
+    // loop through
+    for(var i = 0; i < list.length; i++){
+        storage.push(callback(list[i], i, list))
+        // callback(element)
+        // push to array
+    }
+    _.each(list, function(v,i,list){ // Functional way of doing it with es6
+        storage.push(callback(v,i,list));
+    });
+    // return
+    return storage;
+
+}
+
+_.map([1,2,3], function(val){return val+1;})
+
 _.each = function(list, callback) {
 
     if (Array.isArray(list)){
@@ -27,3 +47,4 @@ _.each(["Sally","georgie","porgie"], function(name, i, list){
         console.log(name, "is oldest")
     }
 });
+
